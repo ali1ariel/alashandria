@@ -2,8 +2,11 @@ defmodule Alashandria.Library do
   use Ash.Domain,
     otp_app: :alashandria
 
+  alias Alashandria.Library.Book
+  alias Alashandria.Library.Author
+
   resources do
-    resource Alashandria.Library.Book
-    resource Alashandria.Library.Author
+    resource Book
+    resource Author
   end
 end

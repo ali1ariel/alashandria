@@ -7,7 +7,7 @@ defmodule Alashandria.Library.Book do
     defaults [:read]
 
     create :create do
-      accept [:name, :pages, :edition]
+      accept [:name, :pages, :edition, :author_id]
     end
   end
 
