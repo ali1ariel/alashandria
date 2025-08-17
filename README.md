@@ -1,21 +1,16 @@
-# Alashandria
+# alASHandria - a library that burns all the books all the time.
 
-**TODO: Add description**
+This is just a simple library architecture built in Elixir using Ash Framework. Using GraphQL as the interface.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `alashandria` to your list of dependencies in `mix.exs`:
+Do you got Elixir installed in your machine? So:...
 
-```elixir
-def deps do
-  [
-    {:alashandria, "~> 0.1.0"}
-  ]
-end
+```
+mix deps.get
+iex -S mix
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/alashandria>.
+Just it, welcome.
 
+Oh, the rest of the doc 😲? Oh no... I think I burned it by accident. 
