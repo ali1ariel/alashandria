@@ -8,8 +8,11 @@ defmodule Alashandria.Library.Author do
     type :author
 
     queries do
-      get(:get_author, :read)
-      list(:list_authors, :read)
+      get :get_author, :read
+
+      list :list_authors, :read
+
+      list :search_authors, :search
     end
 
     mutations do
@@ -19,6 +22,13 @@ defmodule Alashandria.Library.Author do
 
   actions do
     defaults [:read]
+
+    read :search do
+      argument :name, :string, allow_nil?: true
+      argument :nationality, :string, allow_nil?: true
+
+      filter expr(name == ^arg(:name) or nationality == ^arg(:nationality))
+    end
 
     create :create do
       accept [:name, :bio, :birth_date, :death_date, :nationality]
@@ -33,10 +43,13 @@ defmodule Alashandria.Library.Author do
 
     attribute :name, :string do
       public? true
+      # filterable? true
     end
+
     attribute :bio, :string
     attribute :birth_date, :date
     attribute :death_date, :date
+
     attribute :nationality, :string do
       public? true
     end
