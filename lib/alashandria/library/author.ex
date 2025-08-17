@@ -4,6 +4,8 @@ defmodule Alashandria.Library.Author do
     data_layer: Ash.DataLayer.Ets,
     extensions: [AshGraphql.Resource]
 
+  require Ash.Query
+
   graphql do
     type :author
 
@@ -27,7 +29,11 @@ defmodule Alashandria.Library.Author do
       argument :name, :string, allow_nil?: true
       argument :nationality, :string, allow_nil?: true
 
-      filter expr(name == ^arg(:name) or nationality == ^arg(:nationality))
+      prepare fn query, _context ->
+        query
+        |> filter_by_name(Ash.Query.get_argument(query, :name))
+        |> filter_by_nationality(Ash.Query.get_argument(query, :nationality))
+      end
     end
 
     create :create do
@@ -60,4 +66,12 @@ defmodule Alashandria.Library.Author do
   relationships do
     has_many :books, Alashandria.Library.Book
   end
+
+  defp filter_by_name(query, name) when name in [nil, ""], do: query
+  defp filter_by_name(query, name), do: Ash.Query.filter(query, name: name)
+
+  defp filter_by_nationality(query, nationality) when nationality in [nil, ""], do: query
+
+  defp filter_by_nationality(query, nationality),
+    do: Ash.Query.filter(query, nationality: nationality)
 end
