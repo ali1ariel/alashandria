@@ -8,6 +8,9 @@ defmodule Alashandria.Library.Book do
 
     create :create do
       accept [:name, :pages, :edition, :author_id]
+      validate present([:name, :pages, :edition, :author_id])
+      validate numericality(:pages, greater_than: 0)
+      validate numericality(:edition, greater_than: 0)
     end
   end
 
