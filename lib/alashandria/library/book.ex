@@ -34,10 +34,13 @@ defmodule Alashandria.Library.Book do
     attribute :name, :string do
       public? true
     end
+
     attribute :pages, :integer
+
     attribute :edition, :integer do
       public? true
     end
+
     attribute :isbn, :string
     attribute :description, :string
     attribute :language, :string, default: "pt"
@@ -51,5 +54,4 @@ defmodule Alashandria.Library.Book do
       public? true
     end
   end
-
 end
