@@ -24,4 +24,9 @@ defmodule Alashandria.LibraryHelper do
     author = create_author(author_attrs)
     create_book(book_attrs, author.id)
   end
+
+  def list_authors do
+    Author
+    |> Ash.read()
+  end
 end

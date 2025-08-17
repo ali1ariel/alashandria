@@ -1,7 +1,21 @@
 defmodule Alashandria.Library.Author do
   use Ash.Resource,
     domain: Alashandria.Library,
-    data_layer: Ash.DataLayer.Ets
+    data_layer: Ash.DataLayer.Ets,
+    extensions: [AshGraphql.Resource]
+
+  graphql do
+    type :author
+
+    queries do
+      get(:get_author, :read)
+      list(:list_authors, :read)
+    end
+
+    mutations do
+      create :create_author, :create
+    end
+  end
 
   actions do
     defaults [:read]
@@ -17,11 +31,15 @@ defmodule Alashandria.Library.Author do
   attributes do
     uuid_primary_key :id
 
-    attribute :name, :string
+    attribute :name, :string do
+      public? true
+    end
     attribute :bio, :string
     attribute :birth_date, :date
     attribute :death_date, :date
-    attribute :nationality, :string
+    attribute :nationality, :string do
+      public? true
+    end
 
     timestamps()
   end

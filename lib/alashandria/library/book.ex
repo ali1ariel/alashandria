@@ -1,7 +1,21 @@
 defmodule Alashandria.Library.Book do
   use Ash.Resource,
     domain: Alashandria.Library,
-    data_layer: Ash.DataLayer.Ets
+    data_layer: Ash.DataLayer.Ets,
+    extensions: [AshGraphql.Resource]
+
+  graphql do
+    type :book
+
+    queries do
+      get :get_book, :read
+      list :list_books, :read
+    end
+
+    mutations do
+      create :create_book, :create
+    end
+  end
 
   actions do
     defaults [:read]
