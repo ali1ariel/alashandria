@@ -21,4 +21,9 @@ defmodule Alashandria.Library.Author do
     attribute :death_date, :date
     attribute :nationality, :string
   end
+
+  relationships do
+    has_many :books, Alashandria.Library.Book
+  end
+
 end

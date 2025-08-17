@@ -24,4 +24,9 @@ defmodule Alashandria.Library.Book do
 
     timestamps()
   end
+
+  relationships do
+    belongs_to :author, Alashandria.Library.Author
+  end
+
 end
