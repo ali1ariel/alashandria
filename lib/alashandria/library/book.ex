@@ -31,9 +31,13 @@ defmodule Alashandria.Library.Book do
   attributes do
     uuid_primary_key :id
 
-    attribute :name, :string
+    attribute :name, :string do
+      public? true
+    end
     attribute :pages, :integer
-    attribute :edition, :integer
+    attribute :edition, :integer do
+      public? true
+    end
     attribute :isbn, :string
     attribute :description, :string
     attribute :language, :string, default: "pt"
@@ -43,7 +47,9 @@ defmodule Alashandria.Library.Book do
   end
 
   relationships do
-    belongs_to :author, Alashandria.Library.Author
+    belongs_to :author, Alashandria.Library.Author do
+      public? true
+    end
   end
 
 end
