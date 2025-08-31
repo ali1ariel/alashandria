@@ -3,7 +3,7 @@
 > A library that burns all the books all the time. (In memory with ETS, if you did not get it...)
 
 [![Elixir](https://img.shields.io/badge/Elixir-1.17+-blueviolet.svg)](https://elixir-lang.org/)
-[![Ash Framework](https://img.shields.io/badge/Ash-3.0+-orange.svg)](https://ash-hq.org/)
+[![Ash Framework](https://img.shields.io/badge/Ash-3.5+-orange.svg)](https://ash-hq.org/)
 [![GraphQL](https://img.shields.io/badge/GraphQL-Enabled-e10098.svg)](https://graphql.org/)
 
 A simple library management system built with Elixir and Ash Framework. Features automatic GraphQL API generation from declarative resources.
