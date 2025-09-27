@@ -1,6 +1,6 @@
 # alASHandria
 
-> A library that burns all the books all the time. (In memory with ETS, if you did not get it...)
+> A library that burns all the books all the time. (In memory with Mnesia, if you did not get it...)
 
 [![Elixir](https://img.shields.io/badge/Elixir-1.17+-blueviolet.svg)](https://elixir-lang.org/)
 [![Ash Framework](https://img.shields.io/badge/Ash-3.5+-orange.svg)](https://ash-hq.org/)
@@ -27,25 +27,29 @@ Create an author and book:
 
 ```graphql
 mutation {
-  createAuthor(input: {
-    name: "Machado de Assis"
-    nationality: "BR"
-  }) {
-    result { id name }
+  createAuthor(input: { name: "Machado de Assis", nationality: "BR" }) {
+    result {
+      id
+      name
+    }
   }
 }
 
 mutation {
-  createBook(input: {
-    name: "Dom Casmurro"
-    pages: 200
-    edition: 1
-    authorId: "author-id-here"
-  }) {
+  createBook(
+    input: {
+      name: "Dom Casmurro"
+      pages: 200
+      edition: 1
+      authorId: "author-id-here"
+    }
+  ) {
     result {
       id
       name
-      author { name }
+      author {
+        name
+      }
     }
   }
 }
@@ -58,11 +62,14 @@ query {
   searchAuthors(name: "Machado", nationality: "BR") {
     id
     name
-    books { name pages }
+    books {
+      name
+      pages
+    }
   }
 }
 ```
 
 Just it, welcome.
 
-Oh, the rest of the doc 😲? Oh no... I think I burned it by accident. 
+Oh, the rest of the doc 😲? Oh no... I think I burned it by accident.

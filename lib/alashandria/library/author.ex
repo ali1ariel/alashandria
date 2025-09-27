@@ -1,7 +1,7 @@
 defmodule Alashandria.Library.Author do
   use Ash.Resource,
     domain: Alashandria.Library,
-    data_layer: Ash.DataLayer.Ets,
+    data_layer: Ash.DataLayer.Mnesia,
     extensions: [AshGraphql.Resource]
 
   require Ash.Query
@@ -41,6 +41,9 @@ defmodule Alashandria.Library.Author do
 
       validate present([:name])
       validate string_length(:name, min: 2, max: 100)
+      validate string_length(:nationality, min: 2, max: 2)
+
+      validate match(:nationality, "^[A-Z]{2}$")
     end
   end
 
@@ -49,10 +52,13 @@ defmodule Alashandria.Library.Author do
 
     attribute :name, :string do
       public? true
-      # filterable? true
+      filterable? true
     end
 
-    attribute :bio, :string
+    attribute :bio, :string do
+      public? true
+    end
+
     attribute :birth_date, :date
     attribute :death_date, :date
 
@@ -68,7 +74,20 @@ defmodule Alashandria.Library.Author do
   end
 
   defp filter_by_name(query, name) when name in [nil, ""], do: query
-  defp filter_by_name(query, name), do: Ash.Query.filter(query, name: name)
+
+  # Mnesia doesn't have support for queries with partial strings, so this query fetch all data from the base and filter the results
+  defp filter_by_name(query, search_term) do
+    Ash.Query.after_action(query, fn _query, results ->
+      filtered =
+        Enum.filter(results, fn author ->
+          author.name
+          |> String.downcase()
+          |> String.contains?(String.downcase(search_term))
+        end)
+
+      {:ok, filtered}
+    end)
+  end
 
   defp filter_by_nationality(query, nationality) when nationality in [nil, ""], do: query
 
