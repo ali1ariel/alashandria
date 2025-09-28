@@ -125,7 +125,6 @@ erDiagram
     ATTENDANT ||--o{ FEE : apply
     ATTENDANT ||--o{ RENEWAL : renews
     ATTENDANT ||--o{ USER : creates
-    USER ||--o{ LOAN : borrows
     USER ||--o{ RESERVE : "shows interest"
 
     USER {
