@@ -5,6 +5,7 @@ defmodule Alashandria.Library do
 
   alias Alashandria.Library.Book
   alias Alashandria.Library.Author
+  alias Alashandria.Library.Category
 
   graphql do
     authorize? false
@@ -14,5 +15,6 @@ defmodule Alashandria.Library do
   resources do
     resource Book
     resource Author
+    resource Category
   end
 end

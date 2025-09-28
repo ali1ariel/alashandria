@@ -35,11 +35,12 @@ defmodule Alashandria.Library.Book do
     end
 
     create :create do
-      accept [:name, :pages, :edition, :author_id]
-      validate present([:name, :pages, :edition, :author_id])
+      accept [:name, :pages, :edition, :author_id, :category_id]
+      validate present([:name, :pages, :edition, :author_id, :category_id])
       validate numericality(:pages, greater_than: 0)
       validate numericality(:edition, greater_than: 0)
       validate {Validations.AuthorExists, []}
+      validate {Validations.CategoryExists, []}
     end
   end
 
@@ -86,6 +87,11 @@ defmodule Alashandria.Library.Book do
       public? true
       allow_nil? false
     end
+
+    belongs_to :category, Alashandria.Library.Category do
+      public? true
+      # allow_nil? false
+    end
   end
 
   defp filter_by_book_name(query, name) when name in [nil, ""], do: query
@@ -128,4 +134,5 @@ defmodule Alashandria.Library.Book do
       {:ok, filtered}
     end)
   end
-end
+
+ end
