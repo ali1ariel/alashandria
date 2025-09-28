@@ -24,10 +24,14 @@ config:
 erDiagram
     AUTHOR ||--o{ BOOK : writes
     CATEGORY ||--o{ BOOK : contains
+    ATTENDANT ||--o{ BOOK : creates
+    ATTENDANT ||--o{ AUTHOR : creates
+    ATTENDANT ||--o{ CATEGORY : creates
 
     AUTHOR {
 
         UUID id PK
+        UUID attendant_id FK
         STRING name
         STRING bio
         DATE birth_date
@@ -40,6 +44,7 @@ erDiagram
 
     CATEGORY {
         UUID id PK
+        UUID attendant_id FK
         STRING name
         DATETIME inserted_at
         DATETIME updated_at
@@ -47,6 +52,7 @@ erDiagram
 
     BOOK {
         UUID id PK
+        UUID attendant_id FK
         UUID category_id FK
         UUID author_id FK
         STRING name
@@ -91,6 +97,7 @@ erDiagram
         UUID id PK
         UUID loan_id FK
         UUID attendant_id FK
+        STRING type
         DATETIME renewed_at
     }
     FEE {
@@ -141,5 +148,31 @@ erDiagram
         STRING name
         STRING email
     }
+
+```
+
+#### Final relationships
+
+```mermaid
+---
+config:
+  layout: elk
+---
+erDiagram
+    ATTENDANT ||--o{ BOOK : has_many
+    ATTENDANT ||--o{ AUTHOR : has_many
+    ATTENDANT ||--o{ CATEGORY : has_many
+    ATTENDANT ||--o{ LOAN : has_many
+    ATTENDANT ||--o{ FEE : has_many
+    ATTENDANT ||--o{ RENEWAL : has_many
+    ATTENDANT ||--o{ USER : has_many
+    USER ||--o{ LOAN : has_many
+    USER ||--o{ RESERVE : has_many
+    AUTHOR ||--o{ BOOK : has_many
+    CATEGORY ||--o{ BOOK : has_many
+    LOAN ||--|| BOOK : has_one
+    LOAN ||--o{ RENEWAL : zero_or_many
+    LOAN ||--o{ FEE : zero_or_many
+    LOAN ||--o| RESERVE : zero_or_one
 
 ```
