@@ -3,7 +3,7 @@ defmodule Alashandria.AuthorTest do
 
   alias Alashandria.Library.Author
   alias Alashandria.LibraryHelper
-  alias Ash.Domain
+  # alias Ash.Domain
 
   import Alashandria.Generator
   import ExUnitProperties
@@ -25,7 +25,8 @@ defmodule Alashandria.AuthorTest do
             input <-
               Ash.Generator.action_input(Author, :create, %{
                 name: StreamData.string(:alphanumeric, min_length: 2, max_length: 50),
-                nationality: StreamData.member_of(["Brazilian", "Portuguese", "Spanish"])
+                nationality: StreamData.member_of(["BR", "PT", "US"]),
+                bio: Faker.Lorem.Shakespeare.as_you_like_it()
               })
           ) do
       author = LibraryHelper.create_author(input)

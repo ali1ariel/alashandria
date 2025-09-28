@@ -1,8 +1,4 @@
-# lib/alashandria/dev_helpers.ex
 defmodule Alashandria.LibraryHelper do
-  @moduledoc """
-  Fast management functions to helps development through iex.
-  """
   alias Alashandria.Library
   alias Alashandria.Library.{Author, Book}
 
