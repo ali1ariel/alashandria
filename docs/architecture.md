@@ -78,9 +78,8 @@ erDiagram
     ATTENDANT ||--o{ LOAN : processes
     ATTENDANT ||--o{ RENEWAL : "extends the deadline"
     ATTENDANT ||--o{ FEE : applies
-    USER ||--o{ LOAN : borrows
     USER ||--o{ RESERVE : "shows interest"
-    LOAN ||--o| FEE : "may incur"
+    LOAN ||--o{ FEE : "may incur"
     LOAN ||--o{ RENEWAL : "renews and recalc expect return date"
     RESERVE ||--o| LOAN : "may become"
     LOAN {
