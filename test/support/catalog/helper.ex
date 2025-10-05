@@ -1,4 +1,4 @@
-defmodule Alashandria.CatalogHelper do
+defmodule Alashandria.Catalog.Helper do
   alias Alashandria.Library.Catalog
   alias Catalog.{Author, Book}
 
