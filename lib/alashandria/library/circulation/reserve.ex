@@ -6,13 +6,42 @@ defmodule Alashandria.Library.Circulation.Reserve do
 
   require Ash.Query
 
-  graphql do
-  end
+  alias Alashandria.Library.Catalog.Validations, as: CatalogValidations
 
-  mutations do
+  graphql do
+    type :reserve
+
+    queries do
+      get :get_reserve, :read
+      list :list_reserves, :read
+      list :search_reserves, :search
+    end
+
+    mutations do
+      create :create_reserve, :create
+    end
   end
 
   actions do
+    defaults [:read]
+
+    read :search do
+      argument :book_id, :string, allow_nil?: true
+      # argument :user_id, :string, allow_nil?: true
+
+      prepare fn query, _context ->
+        query
+        |> Ash.Query.filter(book_id: Ash.Query.get_argument(query, :book_id))
+
+        # |> Ash.Query.filter(user_id: Ash.Query.get_argument(query, :user_id))
+      end
+    end
+
+    create :create do
+      accept [:book_id]
+
+      validate {CatalogValidations.BookExists, []}
+    end
   end
 
   attributes do
@@ -20,7 +49,7 @@ defmodule Alashandria.Library.Circulation.Reserve do
       public? true
     end
 
-    boolean :was_canceled? do
+    attribute :was_canceled, :boolean do
       public? true
     end
 
