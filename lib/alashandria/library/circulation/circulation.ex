@@ -3,7 +3,7 @@ defmodule Alashandria.Library.Circulation do
     otp_app: :alashandria,
     extensions: [AshGraphql.Domain]
 
-  alias Alashandria.Library.Circulation.Reserve
+  alias Alashandria.Library.Circulation.{Reserve, Loan}
 
   graphql do
     authorize? false
@@ -12,5 +12,6 @@ defmodule Alashandria.Library.Circulation do
 
   resources do
     resource Reserve
+    resource Loan
   end
 end
