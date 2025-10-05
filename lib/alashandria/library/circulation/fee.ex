@@ -31,6 +31,10 @@ defmodule Alashandria.Library.Circulation.Fee do
         |> Ash.Query.filter(loan_id: Ash.Query.get_argument(query, :loan_id))
       end
     end
+
+    create :create do
+      accept [:value, :type, :loan_id]
+    end
   end
 
   attributes do

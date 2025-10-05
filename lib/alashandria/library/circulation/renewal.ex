@@ -31,6 +31,10 @@ defmodule Alashandria.Library.Circulation.Renewal do
         |> Ash.Query.filter(loan_id: Ash.Query.get_argument(query, :loan_id))
       end
     end
+
+    create :create do
+      accept [:type, :loan_id]
+    end
   end
 
   attributes do
@@ -38,7 +42,7 @@ defmodule Alashandria.Library.Circulation.Renewal do
       public? true
     end
 
-    attribute :value, :decimal do
+    create_timestamp :renewed_at do
       public? true
     end
 
