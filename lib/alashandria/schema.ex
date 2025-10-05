@@ -1,7 +1,7 @@
 defmodule Alashandria.Schema do
   use Absinthe.Schema
 
-  use AshGraphql, domains: [Alashandria.Library]
+  use AshGraphql, domains: [Alashandria.Library.Catalog]
 
   query do
   end

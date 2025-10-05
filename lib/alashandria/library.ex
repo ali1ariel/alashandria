@@ -1,11 +1,11 @@
-defmodule Alashandria.Library do
+defmodule Alashandria.Library.Catalog do
   use Ash.Domain,
     otp_app: :alashandria,
     extensions: [AshGraphql.Domain]
 
-  alias Alashandria.Library.Book
-  alias Alashandria.Library.Author
-  alias Alashandria.Library.Category
+  alias Alashandria.Library.Catalog.Book
+  alias Alashandria.Library.Catalog.Author
+  alias Alashandria.Library.Catalog.Category
 
   graphql do
     authorize? false

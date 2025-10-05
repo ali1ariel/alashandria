@@ -1,6 +1,6 @@
-defmodule Alashandria.Library.Category do
+defmodule Alashandria.Library.Catalog.Category do
   use Ash.Resource,
-    domain: Alashandria.Library,
+    domain: Alashandria.Library.Catalog,
     data_layer: Ash.DataLayer.Mnesia,
     extensions: [AshGraphql.Resource]
 
@@ -52,7 +52,7 @@ defmodule Alashandria.Library.Category do
   end
 
   relationships do
-    has_many :books, Alashandria.Library.Book do
+    has_many :books, Alashandria.Library.Catalog.Book do
       public? true
     end
   end
