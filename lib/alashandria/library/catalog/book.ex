@@ -4,7 +4,7 @@ defmodule Alashandria.Library.Catalog.Book do
     data_layer: Ash.DataLayer.Mnesia,
     extensions: [AshGraphql.Resource]
 
-  alias Alashandria.Library.Validations
+  alias Alashandria.Library.Catalog.Validations
   alias Alashandria.Library.Catalog
 
   graphql do

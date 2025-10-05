@@ -1,4 +1,4 @@
-defmodule Alashandria.Library.Validations.AuthorExists do
+defmodule Alashandria.Library.Catalog.Validations.AuthorExists do
   alias Alashandria.Library.Catalog.Author
   alias Alashandria.Library.Catalog
   use Ash.Resource.Validation

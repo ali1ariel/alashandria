@@ -1,4 +1,4 @@
-defmodule Alashandria.Library.Validations.CategoryExists do
+defmodule Alashandria.Library.Catalog.Validations.CategoryExists do
   alias Alashandria.Library.Catalog.Category
   alias Alashandria.Library.Catalog
   use Ash.Resource.Validation
