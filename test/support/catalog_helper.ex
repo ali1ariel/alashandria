@@ -1,11 +1,11 @@
-defmodule Alashandria.LibraryHelper do
-  alias Alashandria.Library
-  alias Alashandria.Library.{Author, Book}
+defmodule Alashandria.CatalogHelper do
+  alias Alashandria.Library.Catalog
+  alias Catalog.{Author, Book}
 
   def create_author(attrs) do
     Author
     |> Ash.Changeset.for_create(:create, attrs)
-    |> Ash.create!(domain: Library)
+    |> Ash.create!(domain: Catalog)
   end
 
   def create_book(attrs, author_id) do
@@ -13,7 +13,7 @@ defmodule Alashandria.LibraryHelper do
 
     Book
     |> Ash.Changeset.for_create(:create, attrs)
-    |> Ash.create!(domain: Library)
+    |> Ash.create!(domain: Catalog)
   end
 
   def create_book_with_author(book_attrs, author_attrs) do

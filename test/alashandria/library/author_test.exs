@@ -1,8 +1,8 @@
 defmodule Alashandria.AuthorTest do
   use ExUnit.Case, async: false
 
-  alias Alashandria.Library.Author
-  alias Alashandria.LibraryHelper
+  alias Alashandria.Library.Catalog.Author
+  alias Alashandria.CatalogHelper
   # alias Ash.Domain
 
   import Alashandria.Generator
@@ -29,7 +29,7 @@ defmodule Alashandria.AuthorTest do
                 bio: Faker.Lorem.Shakespeare.as_you_like_it()
               })
           ) do
-      author = LibraryHelper.create_author(input)
+      author = CatalogHelper.create_author(input)
 
       assert author.name == input.name
       assert author.nationality == input.nationality

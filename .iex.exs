@@ -1,4 +1,4 @@
-alias Alashandria.Library
-alias Alashandria.Library.Book
-alias Alashandria.Library.Author
-alias Alashandria.LibraryHelper
+alias Alashandria.Library.Catalog
+alias Alashandria.Library.Catalog.Book
+alias Alashandria.Library.Catalog.Author
+alias Alashandria.CatalogHelper

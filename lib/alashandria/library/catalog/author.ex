@@ -1,6 +1,6 @@
-defmodule Alashandria.Library.Author do
+defmodule Alashandria.Library.Catalog.Author do
   use Ash.Resource,
-    domain: Alashandria.Library,
+    domain: Alashandria.Library.Catalog,
     data_layer: Ash.DataLayer.Mnesia,
     extensions: [AshGraphql.Resource]
 
@@ -70,7 +70,7 @@ defmodule Alashandria.Library.Author do
   end
 
   relationships do
-    has_many :books, Alashandria.Library.Book
+    has_many :books, Alashandria.Library.Catalog.Book
   end
 
   defp filter_by_name(query, name) when name in [nil, ""], do: query

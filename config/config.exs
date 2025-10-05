@@ -1,6 +1,6 @@
 import Config
 
-config :alashandria, ash_domains: [Alashandria.Library]
+config :alashandria, ash_domains: [Alashandria.Library.Catalog]
 
 config :ash,
   allow_forbidden_field_for_relationships_by_default?: true,

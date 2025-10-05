@@ -1,12 +1,14 @@
 defmodule Alashandria.Generator do
   use Ash.Generator
-  alias Alashandria.Library.Category
-  alias Alashandria.Library.Author
-  alias Alashandria.Library.Book
+  alias Alashandria.Library.Catalog.Category
+  alias Alashandria.Library.Catalog.Author
+  alias Alashandria.Library.Catalog.Book
 
   def book(opts \\ []) do
     author_id = opts[:author_id] || once(:default_author_id, fn -> generate(author()).id end)
-    category_id = opts[:category_id] || once(:default_category_id, fn -> generate(category()).id end)
+
+    category_id =
+      opts[:category_id] || once(:default_category_id, fn -> generate(category()).id end)
 
     changeset_generator(
       Book,
@@ -40,7 +42,7 @@ defmodule Alashandria.Generator do
       Category,
       :create,
       defaults: [
-        name: Faker.Cat.name()
+        name: Faker.Person.name()
       ],
       overrides: opts
     )

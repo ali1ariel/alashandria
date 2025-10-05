@@ -1,10 +1,11 @@
-defmodule Alashandria.Library.Book do
+defmodule Alashandria.Library.Catalog.Book do
   use Ash.Resource,
-    domain: Alashandria.Library,
+    domain: Alashandria.Library.Catalog,
     data_layer: Ash.DataLayer.Mnesia,
     extensions: [AshGraphql.Resource]
 
   alias Alashandria.Library.Validations
+  alias Alashandria.Library.Catalog
 
   graphql do
     type :book
@@ -83,12 +84,12 @@ defmodule Alashandria.Library.Book do
   end
 
   relationships do
-    belongs_to :author, Alashandria.Library.Author do
+    belongs_to :author, Alashandria.Library.Catalog.Author do
       public? true
       allow_nil? false
     end
 
-    belongs_to :category, Alashandria.Library.Category do
+    belongs_to :category, Alashandria.Library.Catalog.Category do
       public? true
       # allow_nil? false
     end
@@ -116,7 +117,7 @@ defmodule Alashandria.Library.Book do
   defp filter_by_author_name(query, search_term) do
     query
     |> Ash.Query.after_action(fn _query, results ->
-      loaded_books = Ash.load!(results, :author, domain: Alashandria.Library)
+      loaded_books = Ash.load!(results, :author, domain: Catalog)
 
       filtered =
         Enum.filter(loaded_books, fn book ->
