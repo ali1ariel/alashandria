@@ -2,7 +2,7 @@ defmodule Alashandria.AuthorTest do
   use ExUnit.Case, async: false
 
   alias Alashandria.Library.Catalog.Author
-  alias Alashandria.CatalogHelper
+  alias Alashandria.Catalog.Helper, as: CatalogHelper
   # alias Ash.Domain
 
   import Alashandria.Generator
