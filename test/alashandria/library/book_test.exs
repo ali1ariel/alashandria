@@ -1,11 +1,7 @@
 defmodule Alashandria.Library.Catalog.BookTest do
   use ExUnit.Case, async: false
 
-  import Alashandria.Generator
-  import ExUnitProperties
-
-  alias Alashandria.Library.Catalog.Author
-  alias Alashandria.CatalogHelper
+  use Alashandria.Generator
 
   setup do
     %{author: generate(author())}

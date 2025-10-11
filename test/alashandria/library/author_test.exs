@@ -2,10 +2,10 @@ defmodule Alashandria.AuthorTest do
   use ExUnit.Case, async: false
 
   alias Alashandria.Library.Catalog.Author
-  alias Alashandria.CatalogHelper
+  alias Alashandria.Catalog.Helper, as: CatalogHelper
   # alias Ash.Domain
 
-  import Alashandria.Generator
+  use Alashandria.Generator
   import ExUnitProperties
 
   test "the author are being created" do
