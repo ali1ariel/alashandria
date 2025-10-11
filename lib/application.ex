@@ -16,5 +16,6 @@ defmodule Alashandria.Application do
   defp setup_mnesia do
     :mnesia.create_schema([node()])
     Ash.DataLayer.Mnesia.start(Alashandria.Library.Catalog)
+    Ash.DataLayer.Mnesia.start(Alashandria.Library.Circulation)
   end
 end
