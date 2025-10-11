@@ -1,6 +1,7 @@
 defmodule Alashandria.Generator do
-  use Ash.Generator
-  defdelegate book(opts \\ []), to: Alashandria.Catalog.Generators
-  defdelegate author(opts \\ []), to: Alashandria.Catalog.Generators
-  defdelegate category(opts \\ []), to: Alashandria.Catalog.Generators
+  defmacro __using__(_opts) do
+    quote do
+      import Alashandria.Catalog.Generators
+    end
+  end
 end

@@ -5,7 +5,7 @@ defmodule Alashandria.AuthorTest do
   alias Alashandria.Catalog.Helper, as: CatalogHelper
   # alias Ash.Domain
 
-  import Alashandria.Generator
+  use Alashandria.Generator
   import ExUnitProperties
 
   test "the author are being created" do
