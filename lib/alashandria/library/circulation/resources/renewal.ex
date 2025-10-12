@@ -54,6 +54,7 @@ defmodule Alashandria.Library.Circulation.Renewal do
   relationships do
     belongs_to :loan, Alashandria.Library.Circulation.Loan do
       public? true
+      allow_nil? false
     end
   end
 end

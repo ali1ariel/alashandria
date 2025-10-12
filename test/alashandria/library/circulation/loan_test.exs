@@ -1,18 +1,19 @@
-defmodule Alashandria.ReserveTest do
+defmodule Alashandria.LoanTest do
   use ExUnit.Case
   use Alashandria.Generator
 
   alias Alashandria.Library.Circulation
 
-  test "success: create the reserve" do
-    reserve = generate(reserve())
+  test "success: create the loan" do
+    loan = generate(loan())
 
-    loaded_reserve = Ash.load!(reserve, :book)
-    assert reserve.book_id == loaded_reserve.book.id
+    loaded_loan = Ash.load!(loan, :book)
+    assert loan.book_id == loaded_loan.book.id
+    assert not is_nil(loan.expected_return_date)
   end
 
-  test "failed: try to create the reserve with no book" do
-    changeset = Circulation.changeset_to_create_reserve(%{})
+  test "failed: try to create the loan with no book" do
+    changeset = Circulation.changeset_to_create_loan(%{})
 
     Enum.map(changeset.errors, fn error ->
       case error do

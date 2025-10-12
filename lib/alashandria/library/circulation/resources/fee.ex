@@ -44,6 +44,7 @@ defmodule Alashandria.Library.Circulation.Fee do
 
     attribute :value, :decimal do
       public? true
+      allow_nil? false
     end
 
     attribute :type, :string do
@@ -52,6 +53,7 @@ defmodule Alashandria.Library.Circulation.Fee do
 
     attribute :paid, :boolean do
       public? true
+      default false
     end
 
     attribute :paid_at, :utc_datetime_usec do
@@ -63,6 +65,7 @@ defmodule Alashandria.Library.Circulation.Fee do
   relationships do
     belongs_to :loan, Alashandria.Library.Circulation.Loan do
       public? true
+      allow_nil? false
     end
   end
 end
