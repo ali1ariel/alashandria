@@ -43,6 +43,7 @@ defmodule Alashandria.Library.Catalog.Category do
     end
 
     attribute :name, :string do
+      allow_nil? false
       public? true
     end
 
