@@ -13,8 +13,14 @@ defmodule Alashandria.Library.Catalog do
   end
 
   resources do
-    resource Book
-    resource Author
-    resource Category
+    resource Book do
+      define :create_book, action: :create
+    end
+    resource Author do
+      define :create_author, action: :create
+    end
+    resource Category do
+      define :create_category, action: :create
+    end
   end
 end
