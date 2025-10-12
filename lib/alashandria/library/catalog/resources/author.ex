@@ -53,6 +53,7 @@ defmodule Alashandria.Library.Catalog.Author do
     attribute :name, :string do
       public? true
       filterable? true
+      allow_nil? false
     end
 
     attribute :bio, :string do

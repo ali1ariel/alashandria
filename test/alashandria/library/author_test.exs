@@ -2,13 +2,12 @@ defmodule Alashandria.AuthorTest do
   use ExUnit.Case, async: false
 
   alias Alashandria.Library.Catalog.Author
-  alias Alashandria.Catalog.Helper, as: CatalogHelper
-  # alias Ash.Domain
+  alias Alashandria.Library.Catalog
 
   use Alashandria.Generator
   import ExUnitProperties
 
-  test "the author are being created" do
+  test "success: the author really wrote the books that he said" do
     author = generate(author())
 
     loaded_author = Ash.load!(author, :books)
@@ -20,7 +19,20 @@ defmodule Alashandria.AuthorTest do
     assert Enum.count(new_loaded_author.books) == 10
   end
 
-  property "author creation validates correctly" do
+  test "failed: the changeset is not valid with invalid params" do
+    changeset = Catalog.changeset_to_create_author(%{})
+
+    Enum.map(changeset.errors, fn error ->
+      case error do
+        e = %Ash.Error.Changes.InvalidAttribute{} -> assert e.field == :name and e.message =~ "must be present"
+        e = %Ash.Error.Changes.Required{} -> assert e.field == :name
+      end
+    end)
+
+    refute changeset.valid?
+  end
+
+  property "success: author is created correctly with correct params" do
     check all(
             input <-
               Ash.Generator.action_input(Author, :create, %{
@@ -29,7 +41,7 @@ defmodule Alashandria.AuthorTest do
                 bio: Faker.Lorem.Shakespeare.as_you_like_it()
               })
           ) do
-      author = CatalogHelper.create_author(input)
+      {:ok, author} = Catalog.create_author(input)
 
       assert author.name == input.name
       assert author.nationality == input.nationality

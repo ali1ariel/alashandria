@@ -105,6 +105,8 @@ erDiagram
         UUID attendant_id FK
         DECIMAL value
         STRING type
+        BOOLEAN paid
+        DATETIME paid_at
     }
     RESERVE {
         UUID id PK

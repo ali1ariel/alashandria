@@ -91,7 +91,7 @@ defmodule Alashandria.Library.Catalog.Book do
 
     belongs_to :category, Alashandria.Library.Catalog.Category do
       public? true
-      # allow_nil? false
+      allow_nil? false
     end
   end
 
