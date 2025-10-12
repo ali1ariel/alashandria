@@ -3,7 +3,6 @@ defmodule Alashandria.AuthorTest do
 
   alias Alashandria.Library.Catalog.Author
   alias Alashandria.Library.Catalog
-  # alias Ash.Domain
 
   use Alashandria.Generator
   import ExUnitProperties
