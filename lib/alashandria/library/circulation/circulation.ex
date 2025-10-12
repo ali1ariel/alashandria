@@ -11,9 +11,20 @@ defmodule Alashandria.Library.Circulation do
   end
 
   resources do
-    resource Reserve
-    resource Loan
-    resource Fee
-    resource Renewal
+    resource Reserve do
+      define :create_reserve, action: :create
+    end
+
+    resource Loan do
+      define :create_loan, action: :create
+    end
+
+    resource Fee do
+      define :create_fee, action: :create
+    end
+
+    resource Renewal do
+      define :create_renewal, action: :create
+    end
   end
 end
